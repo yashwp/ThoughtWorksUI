@@ -85,8 +85,6 @@ $gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     transition: -webkit-box-shadow 0.3s;
     -o-transition: box-shadow 0.3s;
     transition: box-shadow 0.3s;
-    transition: box-shadow 0.3s, -webkit-box-shadow 0.3s;
-
     &:hover {
       -webkit-box-shadow: 0 2px 20px 10px hsla(0, 0%, 82%, .4);
       box-shadow: 0 2px 20px 10px hsla(0, 0%, 82%, .4);
