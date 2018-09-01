@@ -1,20 +1,79 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="container">
+  <div class="movie-search px-4 pt-4">
+    <h4 [ngStyle]="{'font-weight': 'bold'}">Trending Movies</h4>
+  </div>
+  <div class="movie-actions px-4 pt-4 pb-3">
+    <div>
+      <label for="search" class="sr-only">Search</label>
+      <input id="search" type="search" placeholder="Search Movies, Country, Language" name="searchVal"
+             [(ngModel)]="searchText" class="form-control search-field">
+    </div>
+    <div>
+      <div class="movie-actions-sorting" (click)="sortByYear()">
+        <span class="lnr lnr-sort-amount-asc"></span>
+        <span class="text-uppercase"> sort by year</span>
+      </div>
+    </div>
+  </div>
+  <div class="px-4 py-3 overflow-hidden" *ngIf="searchText">
+    <span class="tag d-inline-flex align-items-center">
+      <span>{{searchText}}</span>
+      <span (click)="searchText = '';" class="lnr lnr-cross ml-2 pointer"></span>
+    </span>
+  </div>
+  <div class="movies-wrapper p-4">
+    <ng-container *ngIf="movieList.length > 0; else noData">
+      <div class="movie-card"
+           *ngFor="let movie of movieList | search: searchText | orderby : {prop: 'title_year', direction: direction}">
+        <div class="movie-card-preview">
+          <span class="lnr lnr-film-play"></span>
+        </div>
+        <div class="movie">
+          <div class="movie-info">
+            <h5 class="movie-info-name text-truncate">{{movie.movie_title}}</h5>
+            <p class="movie-info-genres">{{getFormattedText(movie.genres, '|')}}</p>
+            <small class=" movie-info-lang">{{movie.language}}</small>
+          </div>
+          <div *ngIf="movie.title_year || movie.content_rating" class="movie-info2">
+            <div *ngIf="movie.content_rating" class="movie-info2-rating">{{movie.content_rating}}</div>
+            <p *ngIf="movie.title_year" class=" movie-info2-year">{{movie.title_year}}</p>
+          </div>
+        </div>
+        <div class="movie-card-overlay p-3">
+          <div class="extra-info" *ngIf="movie.plot_keywords">
+            <p class="extra-info-head">Plot</p>
+            <p class="extra-info-body mb-0">{{getFormattedText(movie.plot_keywords, '|')}}</p>
+          </div>
+          <div class="extra-info">
+            <p class="extra-info-head">Cast</p>
+            <p class="extra-info-body mb-0">{{movie.actor_1_name}}, {{movie.actor_2_name}}</p>
+          </div>
+          <div class="extra-info" *ngIf="movie.director_name">
+            <p class="extra-info-head">Director</p>
+            <p class="extra-info-body mb-0">{{movie.director_name}}</p>
+          </div>
+          <div class="extra-info d-flex justify-content-between align-items-center">
+            <div *ngIf="movie.budget">
+              <p class="extra-info-head">Budget</p>
+              <p class="extra-info-body mb-0">{{movie.budget}}</p>
+            </div>
+            <div *ngIf="movie.country">
+              <p class="extra-info-head">Country</p>
+              <p class="extra-info-body mb-0">{{movie.country}}</p>
+            </div>
+          </div>
+          <a [href]="movie.movie_imdb_link" class="d-block text-right">
+            <small class="text-white more-link">More</small>
+          </a>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #noData>
+      <div class="p-4">
+        <div class="d-flex justify-content-center no-data">
+          <span class="lnr lnr-film-play "></span>
+        </div>
+      </div>
+    </ng-template>
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-

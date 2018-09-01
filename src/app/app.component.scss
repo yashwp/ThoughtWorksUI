@@ -1,0 +1,182 @@
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.movie-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .search-field {
+    width: 350px;
+    border-radius: 20px;
+    border: 1px solid #341d5d;
+    color: #341d5d !important;
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  &-sorting {
+    font-size: 13px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+}
+.tag {
+  padding: 5px;
+  border-radius: 3px;
+  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 2px 20px 0 hsla(0, 0%, 82%, .4);
+
+  span {
+    color: #FFF;
+  }
+}
+
+.movies-wrapper {
+  display: grid;
+  grid-template: auto / repeat(auto-fit, 240px);
+  grid-gap: 25px;
+  justify-content: center;
+
+  .movie-card {
+    height: 338px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    box-shadow: 0 2px 20px 0 hsla(0, 0%, 82%, .4);
+    transition: box-shadow 0.3s;
+
+    &:hover {
+      box-shadow: 0 2px 20px 10px hsla(0, 0%, 82%, .4);
+    }
+
+    &-preview {
+      background-image: url('../assets/images/preview.jpeg');
+      width: 100%;
+      height: 235px;
+      background-size: cover;
+      position: relative;
+
+      &::before {
+        content: "";
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        opacity: 0.85;
+      }
+      > span {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        font-size: 53px;
+        opacity: .9;
+        color: white;
+        align-items: center;
+      }
+    }
+    .movie {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+
+      &-info {
+        overflow: hidden;
+        max-width: 160px;
+
+        &-name {
+          font-size: 15px;
+          margin-bottom: 5px;
+          font-weight: bold;
+        }
+        &-genres {
+          font-size: 12px;
+          margin-bottom: 0;
+          color: #757575;
+        }
+        &-lang {
+          font-size: 12px;
+          margin-bottom: 0;
+          color: #9E9E9E;
+        }
+      }
+      &-info2 {
+        &-rating {
+          overflow: hidden;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 40px;
+          height: 40px;
+          color: #fff;
+          font-size: 11px;
+          padding: 3px;
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px;
+          border-radius: 3px;
+          margin-bottom: 5px;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        &-year {
+          margin-bottom: 0;
+          color: #999;
+          font-size: 13px;
+          text-align: center;
+        }
+      }
+    }
+
+    &-overlay {
+      position: absolute;
+      top: 328px;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-transition: top 0.3s cubic-bezier(1, 0, 0, 1);
+      -moz-transition: top 0.3s cubic-bezier(1, 0, 0, 1);
+      -ms-transition: top 0.3s cubic-bezier(1, 0, 0, 1);
+      -o-transition: top 0.3s cubic-bezier(1, 0, 0, 1);
+      transition: top 0.3s cubic-bezier(1, 0, 0, 1);
+
+      .extra-info {
+        margin-bottom: 15px;
+        
+        &-head {
+          font-size: 12px;
+          font-weight: bold;
+          color: #EEE;
+          margin-bottom: 0;
+          text-transform: uppercase;
+        }
+        &-body {
+          margin-bottom: 0;
+          color: #EEE;
+          font-size: 13px;
+          text-transform: capitalize;
+        }
+        .more-link {
+          font-size: 12px !important;
+        }
+      }
+    }
+  }
+  .movie-card:hover .movie-card-overlay {
+    top: 0;
+  }
+}
