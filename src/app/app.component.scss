@@ -1,3 +1,7 @@
+// Variables
+$shadow: 0 2px 20px 0 hsla(0, 0%, 82%, .4);
+$gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
 .overflow-hidden {
   overflow: hidden;
 }
@@ -11,11 +15,25 @@
   justify-content: space-between;
   align-items: center;
 
+  .search-icon {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 99;
+  }
   .search-field {
+    position: relative;
     width: 350px;
+    padding-left: 35px;
     border-radius: 20px;
     border: 1px solid #341d5d;
     color: #341d5d !important;
+
+    @media screen and (max-width: 620px){
+      width: 250px;
+    }
 
     &:focus {
       outline: none;
@@ -29,13 +47,12 @@
     font-weight: bold;
   }
 }
+
 .tag {
   padding: 5px;
   border-radius: 3px;
-  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  box-shadow: 0 2px 20px 0 hsla(0, 0%, 82%, .4);
-
-  span {
+  background-image: $gradient;
+  box-shadow: $shadow span {
     color: #FFF;
   }
 }
@@ -54,7 +71,7 @@
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
-    box-shadow: 0 2px 20px 0 hsla(0, 0%, 82%, .4);
+    box-shadow: $shadow;
     transition: box-shadow 0.3s;
 
     &:hover {
@@ -74,7 +91,7 @@
         height: 100%;
         justify-content: center;
         align-items: center;
-        background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background-image: $gradient;
         opacity: 0.85;
       }
       > span {
@@ -131,7 +148,7 @@
           -moz-border-radius: 3px;
           border-radius: 3px;
           margin-bottom: 5px;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background: $gradient;
         }
         &-year {
           margin-bottom: 0;
@@ -147,7 +164,7 @@
       top: 328px;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: $gradient;
       -webkit-transition: top 0.3s cubic-bezier(1, 0, 0, 1);
       -moz-transition: top 0.3s cubic-bezier(1, 0, 0, 1);
       -ms-transition: top 0.3s cubic-bezier(1, 0, 0, 1);
@@ -156,7 +173,7 @@
 
       .extra-info {
         margin-bottom: 15px;
-        
+
         &-head {
           font-size: 12px;
           font-weight: bold;

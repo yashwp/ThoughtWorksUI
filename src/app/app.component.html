@@ -3,8 +3,9 @@
     <h4 [ngStyle]="{'font-weight': 'bold'}">Trending Movies</h4>
   </div>
   <div class="movie-actions px-4 pt-4 pb-3">
-    <div>
+    <div class="position-relative">
       <label for="search" class="sr-only">Search</label>
+      <span class="lnr lnr-magnifier search-icon"></span>
       <input id="search" type="search" placeholder="Search Movies, Country, Language" name="searchVal"
              [(ngModel)]="searchText" class="form-control search-field">
     </div>
@@ -17,8 +18,8 @@
   </div>
   <div class="px-4 py-3 overflow-hidden" *ngIf="searchText">
     <span class="tag d-inline-flex align-items-center">
-      <span>{{searchText}}</span>
-      <span (click)="searchText = '';" class="lnr lnr-cross ml-2 pointer"></span>
+      <span class="text-white">{{searchText}}</span>
+      <span (click)="searchText = '';" class="lnr lnr-cross text-white ml-2 pointer"></span>
     </span>
   </div>
   <div class="movies-wrapper p-4">
@@ -70,8 +71,9 @@
     </ng-container>
     <ng-template #noData>
       <div class="p-4">
-        <div class="d-flex justify-content-center no-data">
-          <span class="lnr lnr-film-play "></span>
+        <div class="d-flex align-items-center flex-column no-data">
+          <span [ngStyle]="{'font-size': '55px'}" class="lnr lnr-film-play "></span>
+          <h5 class="mt-3 w-100">Movies are loading. Please wait...</h5>
         </div>
       </div>
     </ng-template>
